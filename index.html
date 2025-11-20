@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-top">
+          <div>
+            <h1>📝 Task Manager</h1>
+            <p style="color: #666">Organize your daily tasks efficiently</p>
+          </div>
+          <button class="add-btn" onclick="openModal()">+ Add Task</button>
+        </div>
+      </header>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h3>Total Tasks</h3>
+          <div class="number" id="totalTasks">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>To Do</h3>
+          <div class="number" id="todoTasks" style="color: #3b82f6">0</div>
+        </div>
+        <div class="stat-card">
+          <h3>In Progress</h3>
+          <div class="number" id="inProgressTasks" style="color: #8b5cf6">
+            0
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Completed</h3>
+          <div class="number" id="completedTasks" style="color: #10b981">0</div>
+        </div>
+      </div>
+
+      <div class="filters">
+        <div class="filter-group">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search tasks by title..."
+            oninput="filterTasks()"
+          />
+          <select id="priorityFilter" onchange="filterTasks()">
+            <option value="all">All Priorities</option>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+          <select id="statusFilter" onchange="filterTasks()">
+            <option value="all">All Status</option>
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tasks-grid" id="tasksContainer"></div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="taskModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add New Task</h2>
+        </div>
+        <div class="form-group">
+          <label>Task Title *</label>
+          <input type="text" id="taskTitle" placeholder="Enter task title" />
+        </div>
+        <div class="form-group">
+          <label>Description *</label>
+          <textarea
+            id="taskDescription"
+            placeholder="Enter task description"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Due Date *</label>
+          <input type="date" id="taskDate" />
+        </div>
+        <div class="form-group">
+          <label>Priority</label>
+          <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div class="form-group" id="statusGroup" style="display: none">
+          <label>Status</label>
+          <select id="taskStatus">
+            <option value="todo">To Do</option>
+            <option value="inprogress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeModal()">
+            Cancel
+          </button>
+          <button class="btn btn-primary" onclick="saveTask()">
+            Save Task
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
